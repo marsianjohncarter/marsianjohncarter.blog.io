@@ -1,0 +1,74 @@
+* {
+    @apply text-black dark:text-white mx-auto;
+}
+
+h1 {
+    @apply text-3xl font-bold mb-6;
+}
+
+h2 {
+    @apply text-2xl font-bold mb-2;
+}
+
+h3 {
+    @apply text-xl font-bold mb-2;
+}
+
+h4 {
+    @apply text-lg font-bold mb-2;
+}
+
+
+hr {
+    @apply h-[2px] bg-black dark:bg-gray-200 w-full my-4 mx-auto;
+}
+
+strong {
+    @apply font-bold mb-3;
+}
+
+p {
+    @apply mb-3;
+}
+
+/* Reset any existing code styles */
+code {
+    all: revert;
+}
+
+/* Style only standalone code blocks */
+pre code {
+    @apply bg-gray-200 dark:bg-gray-800 rounded-md p-2;
+    display: block;
+    overflow-x: auto;
+}
+
+/* Optional: Style for inline code */
+:not(pre)>code {
+    @apply text-emerald-600 dark:text-emerald-400 bg-gray-200 dark:bg-gray-800 rounded-md;
+    padding: 0.2em 0.4em;
+    font-size: 0.9em;
+    /* background: transparent; */
+}
+
+/* Optional: Style for block code */
+pre {
+    @apply bg-gray-200 dark:bg-gray-800 rounded-md p-2 mx-5 my-10;
+    display: block;
+}
+
+video {
+    @apply rounded-md mx-auto my-10 dark:border dark:border-gray-700 aspect-[16/9];
+    display: block;
+    width:70%;
+    height: auto;
+}
+
+img {
+    @apply bg-cover rounded-md mx-auto my-10 dark:border dark:border-gray-700 max-w-[70%];
+    /* @apply aspect-[16/9] !important; */
+    width: 100%;
+    height: auto;
+}
+
+
