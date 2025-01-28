@@ -1,14 +1,14 @@
 'use client';
 
 import { useRouter } from 'next/navigation';
-import { addPost, checkSession } from '@/lib/supabaseClient';
+import { createClient } from '@/utils/supabase/client';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
 
 import './styles.css';
 
 export default function CreateBlog() {
-
+    const supabase = createClient();
     const router = useRouter();
 
     const formik = useFormik({
@@ -34,9 +34,9 @@ export default function CreateBlog() {
             const { title, description, imageUrl, author, id, date, readingTime } = values;
 
             try {
-                await addPost({ title, description, imageUrl, author, date, readingTime, id });
+                await supabase.from('blogposts').insert([{ title, description, imageUrl, author, date, readingTime, id, views: 0 }]);
                 // Ensure router.push happens after the async operation completes
-                // router.push('/blog');
+                router.push('/blog');
             } catch (error) {
                 console.error('Error creating blog post:', error);
             }

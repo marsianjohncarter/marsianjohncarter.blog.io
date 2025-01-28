@@ -8,7 +8,7 @@ export default async function LogoutPage() {
 
     const { data } = await supabase.auth.getUser();
 
-    if (data?.user) {
+    if (!data?.user) {
         redirect('/');
     }
 
@@ -28,4 +28,6 @@ export default async function LogoutPage() {
         </div>
     );
 }
+
+
 

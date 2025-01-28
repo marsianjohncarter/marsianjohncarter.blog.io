@@ -5,6 +5,7 @@ import Link from 'next/link';
 import { useState } from 'react';
 import clsx from 'clsx';
 import BlogLogo from '@/ui/blog-logo';
+
 import './navbar.css';
 
 const navigation = [
@@ -64,20 +65,24 @@ export default function Navbar() {
                                 </Link>
                             </li>
                         ))}
-                        <Link
-                            type="button"
-                            className="bg-slate-200 py-3 px-16 text-black text-4xl font-bold rounded-md hover:bg-slate-300 hover:scale-105 transition-all cursor-pointer m-4"
-                            href="/signin"
-                        >
-                            Sign In
-                        </Link>
-                        <Link
-                            type="button"
-                            className="bg-slate-200 py-3 px-16 text-black text-4xl font-bold rounded-md hover:bg-slate-300 hover:scale-105 transition-all cursor-pointer m-4"
-                            href="/signout"
-                        >
-                            Sign Out
-                        </Link>
+                        <div className="hidden md:block">
+                            <Link
+                                type="button"
+                                onClick={handleLinkClick}
+                                className="bg-slate-200 py-3 px-16 text-black text-4xl font-bold rounded-md hover:bg-slate-300 hover:scale-105 transition-all cursor-pointer m-4"
+                                href="/signin"
+                            >
+                                Sign In
+                            </Link>
+                            <Link
+                                type="button"
+                                onClick={handleLinkClick}
+                                className="bg-slate-200 py-3 px-16 text-black text-4xl font-bold rounded-md hover:bg-slate-300 hover:scale-105 transition-all cursor-pointer m-4"
+                                href="/signout"
+                            >
+                                Sign Out
+                            </Link>
+                        </div>
                     </ul>
                 </nav>
             </div>

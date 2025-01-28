@@ -3,15 +3,15 @@
 }
 
 h1 {
-    @apply text-3xl font-bold mb-6;
+    @apply text-3xl font-bold mb-10;
 }
 
 h2 {
-    @apply text-2xl font-bold mb-2;
+    @apply text-2xl font-bold mb-6;
 }
 
 h3 {
-    @apply text-xl font-bold mb-2;
+    @apply text-xl font-bold mb-4;
 }
 
 h4 {
@@ -20,7 +20,7 @@ h4 {
 
 
 hr {
-    @apply h-[2px] bg-black dark:bg-gray-200 w-full my-4 mx-auto;
+    @apply h-[2px] bg-black dark:bg-gray-200 w-full my-6 mx-auto;
 }
 
 strong {
@@ -28,7 +28,7 @@ strong {
 }
 
 p {
-    @apply mb-3;
+    @apply mb-5;
 }
 
 /* Reset any existing code styles */
@@ -38,14 +38,14 @@ code {
 
 /* Style only standalone code blocks */
 pre code {
-    @apply bg-gray-200 dark:bg-gray-800 rounded-md p-2;
+    @apply bg-gray-200 dark:bg-gray-800 rounded-xl p-2;
     display: block;
     overflow-x: auto;
 }
 
 /* Optional: Style for inline code */
 :not(pre)>code {
-    @apply text-emerald-600 dark:text-emerald-400 bg-gray-200 dark:bg-gray-800 rounded-md;
+    @apply text-emerald-600 dark:text-emerald-400 bg-gray-200 dark:bg-gray-800 rounded-lg;
     padding: 0.2em 0.4em;
     font-size: 0.9em;
     /* background: transparent; */
@@ -53,7 +53,7 @@ pre code {
 
 /* Optional: Style for block code */
 pre {
-    @apply bg-gray-200 dark:bg-gray-800 rounded-md p-2 mx-5 my-10;
+    @apply bg-gray-200 dark:bg-gray-800 rounded-xl p-2 mx-5 my-10;
     display: block;
 }
 
@@ -65,10 +65,13 @@ video {
 }
 
 img {
-    @apply bg-cover rounded-md mx-auto my-10 dark:border dark:border-gray-700 max-w-[70%];
+    @apply bg-cover rounded-xl mx-auto my-10  ;
     /* @apply aspect-[16/9] !important; */
     width: 100%;
     height: auto;
 }
 
 
+a {
+    @apply underline hover:text-emerald-600 dark:hover:text-emerald-400 transition;
+}

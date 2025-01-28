@@ -1,13 +1,47 @@
-'use client';
-
-import { getAllPosts } from '@/lib/supabaseClient';
 import Link from 'next/link';
-import { supabase } from '@/lib/supabaseClient';
+import { createClient } from '@/utils/supabase/server';
+import {
+    Card,
+    CardContent,
+    CardHeader,
+    CardTitle,
+    CardDescription,
+} from '@/components/ui/card';
+import { cinzelDecorative } from '@/ui/fonts';
 
+function BaseArticle({ id, title, description, readingTime, date }) {
+    return (
+        <div className="w-full mb-3">
+            <Link href={`/blog/${id}`}>
+                <Card className="w-full h-auto min-h-36 hover:border-gray-700 transition-all duration-300 ease-linear">
+                    <CardHeader>
+                        <div className='grid grid-rows-2 gap-4 grid-cols-1 md:grid-cols-4'>
+                            <div className='col-span-3'>
+                                <CardTitle
+                                    className={`${cinzelDecorative.className} font-semibold mb-2`}
+                                >
+                                    {title}
+                                </CardTitle>
+                                <CardDescription className=" text-gray-500 truncate">
+                                    {description}
+                                </CardDescription>
+                            </div>
+                            <div>
+                                <CardDescription className=" text-gray-500 ">
+                                    {date} / {readingTime} min read
+                                </CardDescription>
+                            </div>
+                        </div>
+                    </CardHeader>
+                    <CardContent></CardContent>
+                </Card>
+            </Link>
+        </div>
+    );
+}
 
-
-const Post = ({ id, title, description, readingTime }) => {
-    const blogUrl = `/blog/id${id}`;
+function Post({ id, title, description, readingTime }) {
+    const blogUrl = `/blog/${id}`;
 
     return (
         <Link href={blogUrl} key={id}>
@@ -37,21 +71,42 @@ const Post = ({ id, title, description, readingTime }) => {
             </article>
         </Link>
     );
-};
+}
 
-export default function BlogPage() {
-    const posts = getAllPosts();
+export default async function BlogPage() {
+    // Create Supabase client
+    const supabase = createClient();
+
+    // Fetch blog posts from the database
+    const { data: posts, error } = await supabase.from('blogposts').select('*');
+
+    if (error) {
+        console.error('Error fetching blog posts:', error.message);
+        return (
+            <div className="max-w-4xl mx-auto w-full px-8 py-10 bg-white dark:bg-black text-black dark:text-white">
+                <h1 className="text-3xl font-bold mb-6">Error Loading Posts</h1>
+                <p className="text-gray-600 dark:text-gray-400">
+                    Unable to load blog posts at this time.
+                </p>
+            </div>
+        );
+    }
 
     return (
         <div className="max-w-4xl mx-auto w-full px-8 py-10 bg-white dark:bg-black text-black dark:text-white">
-
-            <h1 className="text-3xl font-bold mb-6">
+            <h1 className={`${cinzelDecorative.className} text-3xl font-bold mb-6 text-center`}>
                 Blog Posts / Newest first
             </h1>
             <div className="space-y-4">
-                {posts.map((item) => (
-                    <Post {...item} id={item.id} key={item.id} />
-                ))}
+                {posts?.length > 0 ? (
+                    posts.map((item) => (
+                        <BaseArticle {...item} id={item.id} key={item.id} />
+                    ))
+                ) : (
+                    <p className="text-gray-600 dark:text-gray-400">
+                        No blog posts found.
+                    </p>
+                )}
             </div>
         </div>
     );

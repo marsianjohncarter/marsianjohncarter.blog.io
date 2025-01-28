@@ -9,7 +9,7 @@ export default async function PopularArticles() {
         .order('views', { ascending: false })
         .limit(6);
     return (
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 px-0 md:px-5">
+        <div>
             {mostViewedPosts.map((post, index) => (
                 <div key={index}>
                     <BaseArticle

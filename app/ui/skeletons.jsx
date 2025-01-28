@@ -100,31 +100,12 @@ export const MainArticleSkeleton = () => {
 
 export const BlogPostsSkeleton = () => {
     return (
-        <div className="border dark:border-slate-600 rounded-lg p-4 mb-4 shadow hover:shadow-lg hover:border-slate-400 transition-all duration-300 ease-linear">
-            <div className="grid grid-rows-2">
-                <div className="grid">
-                    <div className="col-span-3">
-                        <HeaderSkeleton className='w-2/6 mb-4'/>
-                        <Skeleton />
-                        <Skeleton />
-                        <Skeleton />
-
-                    </div>
-                    <div>
-                        <p className="text-gray-600 dark:text-gray-400 hidden md:block hyphens-auto">
-
-                        </p>
-                    </div>
-                </div>
-                <div className="flex justify-center text-center pt-20">
-                    <Skeleton className='w-[20%] md:w-[10%]' />
-                    <p className="text-gray-600 dark:text-gray-400 block md:hidden">
-
-                    </p>
-                </div>
-                <div className="mt-5 hidden md:block">
-
-                </div>
+        <div className="border dark:border-slate-600 rounded-xl p-4 pb-6 mb-4 shadow hover:shadow-lg hover:border-slate-400 transition-all duration-300 ease-linear">
+            <div>
+                <HeaderSkeleton className='w-2/6 mb-4'/>
+                <Skeleton />
+                <Skeleton />
+                <Skeleton />
             </div>
         </div>
     );
