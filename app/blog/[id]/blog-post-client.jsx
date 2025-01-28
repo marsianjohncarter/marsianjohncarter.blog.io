@@ -4,6 +4,8 @@ import { marked } from 'marked';
 import DOMPurify from 'isomorphic-dompurify';
 import Image from 'next/image';
 import { useEffect, useState } from 'react';
+import { monserrat } from '@/ui/fonts';
+
 import './blog-post.css';
 
 export default function BlogPostClient({ initialPost, id }) {
@@ -46,7 +48,7 @@ export default function BlogPostClient({ initialPost, id }) {
     }
 
     return (
-        <div id="blog" className="max-w-3xl lg:mx-auto mx-10">
+        <div id="blog" className={`max-w-3xl lg:mx-auto mx-10 ${monserrat.className}`}>
             <div className="flex justify-center mb-8 overflow-hidden">
                 <Image
                     src={initialPost.imageUrl}

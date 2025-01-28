@@ -1,16 +1,14 @@
-import { createServerClient } from "@supabase/ssr";
+import { createClient } from "@/utils/supabase/server";
 import { NextResponse } from "next/server";
 
 export async function updateSession(request) {
-
-
   let response = NextResponse.next({
     request: {
       headers: request.headers,
     },
   });
 
-  const supabase = createServerClient(
+  const supabase = createClient(
     process.env.NEXT_PUBLIC_SUPABASE_URL,
     process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY,
     {
@@ -56,8 +54,13 @@ export async function updateSession(request) {
     }
   );
 
-  await supabase.auth.getUser();
+  // Check the authenticated user
+  const { data: { user }, error } = await supabase.auth.getUser();
+
+  // If no user is found, redirect or return a 401 response
+  if (!user) {
+    return NextResponse.redirect(new URL("/signin", request.url)); // Redirect to login page
+  }
 
   return response;
 }
-

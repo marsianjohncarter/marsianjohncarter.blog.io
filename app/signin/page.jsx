@@ -16,7 +16,7 @@ import {
 export default async function SignInPage() {
   const supabase = createClient();
   const { data } = await supabase.auth.getUser();
-
+  
   if (data?.user) {
     redirect("/");
   }

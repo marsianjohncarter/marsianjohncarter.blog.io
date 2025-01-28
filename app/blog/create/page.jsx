@@ -3,6 +3,8 @@
 import { useRouter } from 'next/navigation';
 import { createClient } from '@/utils/supabase/client';
 import { useFormik } from 'formik';
+import {Input} from '@/components/ui/input';
+import {Button} from '@/components/ui/button';
 import * as Yup from 'yup';
 
 import './styles.css';
@@ -44,30 +46,30 @@ export default function CreateBlog() {
     });
 
     return (
-        <div className="max-w-2xl mx-auto p-4 text-black dark:text-white pb-40">
-            <h1 className="text-2xl font-bold mb-4">Create New Blog Post</h1>
-            <form onSubmit={formik.handleSubmit}>
+        <div className="max-w-2xl mx-auto p-4 space-y-6">
+            <h1 className="text-2xl font-bold">Create New Blog Post</h1>
+            <form onSubmit={formik.handleSubmit} className="space-y-4">
                 {Object.keys(formik.initialValues).map((key) => (
-                    <div className="mb-4" key={key}>
-                        <label htmlFor={key} className="block mb-2 capitalize">{key.replace(/([A-Z])/g, ' $1')}</label>
-                        <input
+                    <div key={key} className="space-y-2">
+                        <label htmlFor={key} className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70 capitalize">
+                            {key.replace(/([A-Z])/g, ' $1')}
+                        </label>
+                        <Input
                             type={key === 'readingTime' ? 'number' : key === 'date' ? 'date' : 'text'}
                             id={key}
                             {...formik.getFieldProps(key)}
-                            className="w-full p-2 border rounded"
-                            required
+                            className={`${formik.touched[key] && formik.errors[key] ? 'border-red-500' : ''} dark:text-white`}
                         />
                         {formik.touched[key] && formik.errors[key] ? (
-                            <div className="text-red-500 text-sm">{formik.errors[key]}</div>
+                            <p className="text-sm font-medium text-red-500">
+                                {formik.errors[key]}
+                            </p>
                         ) : null}
                     </div>
                 ))}
-                <button
-                    type="submit"
-                    className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600"
-                >
+                <Button type="submit" className="w-full">
                     Create Post
-                </button>
+                </Button>
             </form>
         </div>
     );

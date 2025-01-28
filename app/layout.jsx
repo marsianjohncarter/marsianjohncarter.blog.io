@@ -1,7 +1,7 @@
 import Navbar from '@/ui/navbar';
 import Footer from '@/ui/footer';
 
-import { spaceGrotesk } from '@/ui/fonts';
+import { monserrat } from '@/ui/fonts';
 import './globals.css';
 
 export const experimental_ppr = true;
@@ -15,7 +15,7 @@ export const metadata = {
 export default function RootLayout({ children }) {
     return (
         <html lang="en" className='dark'>
-            <body className={`${spaceGrotesk.className} antialiased selection:bg-slate-200 selection:text-slate-600 dark:selection:bg-gray-800 dark:selection:text-gray-200`}>
+            <body className={`${monserrat.className} antialiased selection:bg-slate-200 selection:text-slate-600 dark:selection:bg-gray-800 dark:selection:text-gray-200`}>
                 <Navbar />
                 {children}
                 <Footer />
